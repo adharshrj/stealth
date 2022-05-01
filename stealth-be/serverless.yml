@@ -1,0 +1,47 @@
+service: ccp-status-service
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage, 'offline'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+          dburl: mongodb+srv://adharsh:adharsh@awscluster0.x9liu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+functions:
+  createRating:
+    handler: handler.createHandler
+    events:
+      - http:
+          path: /v1/rating
+          method: POST
+  updateRating:
+    handler: handler.updateHandler
+    events:
+      - http:
+          path: /v1/rating/{id}
+          method: PUT
+  deleteRating:
+    handler: handler.deleteHandler
+    events:
+      - http:
+          path: /v1/rating/{id}
+          method: DELETE
+
+plugins:
+  - serverless-offline
+
+custom:
+  output:
+    file: stackOutput.json
+  stage: ${opt:stage, 'offline'}
+  serverless-offline:
+      httpPort: 4000
+      lambdaPort: 4002
+  serverless-offline-ssm:
+    stages:
+      - offline
+
