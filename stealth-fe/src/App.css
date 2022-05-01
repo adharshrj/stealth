@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  justify-content: center;
+  height:100vh;  
+  align-items: center;
+}
+
+.card {
+  box-shadow: 5px 10px #888888;
+}
