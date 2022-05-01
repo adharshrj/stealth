@@ -9,7 +9,7 @@ provider:
   stage: ${opt:stage, 'offline'}
   region: ${opt:region, 'us-east-1'}
   environment:
-          dburl: mongodb+srv://adharsh:adharsh@awscluster0.x9liu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+          dburl: 
 
 functions:
   createRating:
